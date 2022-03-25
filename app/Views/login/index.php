@@ -22,39 +22,43 @@
             <p><b>Selamat Datang</b> Apotek Buaran</p>
         </div>
         <!-- /.login-logo -->
+
+        <?= session()->getFlashdata('message'); ?>
+
         <div class="card">
-            <div class="card-body login-card-body">
+            <div class="card-body">
                 <p class="login-box-msg">Silahkan login terlebih dahulu</p>
 
-                <form action="" method="POST">
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
+                <form action="/login/login" method="POST">
+                    <?= csrf_field(); ?>
+                    <div class="input-group <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?> mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input name="username" type="text" class="input form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" id="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('username'); ?>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                    <div class="input-group <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?> mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input name="password" type="password" class="input form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" placeholder="password" aria-label="password" aria-describedby="basic-addon1" />
                         <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                            <span class="input-group-text" onclick="password_show_hide();">
+                                <i class="fas fa-eye" id="show_eye"></i>
+                                <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('password'); ?>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -63,10 +67,10 @@
                 <br>
 
                 <p class="mb-1">
-                    <a href="">I forgot my password</a>
+                    <a href="">Lupa password?</a>
                 </p>
                 <p class="mb-0">
-                    <a href="" class="text-center">Register a new membership</a>
+                    <a href="/register" class="text-center">Belum punya akun? Daftar disini</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
@@ -74,6 +78,8 @@
     </div>
     <!-- /.login-box -->
 
+    <!-- My Javascript -->
+    <script src="<?= base_url(); ?>/js/myscript.js"></script>
     <!-- jQuery -->
     <script src="<?= base_url(); ?>/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->

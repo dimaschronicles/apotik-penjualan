@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Dasbor extends BaseController
+class Dashboard extends BaseController
 {
     public function index()
     {
@@ -10,6 +10,6 @@ class Dasbor extends BaseController
             'title' => 'Dasbor'
         ];
 
-        return view('dasbor/index', $data);
+        return view('dashboard/index', $data);
     }
 }

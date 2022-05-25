@@ -29,3 +29,20 @@ function password_show_hide_conf() {
         hide_eye.style.display = "none";
     }
 }
+
+$(document).ready(function () {
+    // data tables
+    $('#example').DataTable()
+    // summernote editor
+    $('#summernote').summernote({
+        value: 'asdasd',
+        height: 200,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+        ]
+    })
+});

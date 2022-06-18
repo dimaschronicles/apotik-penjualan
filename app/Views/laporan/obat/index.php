@@ -37,6 +37,44 @@
                             <a href="" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Download Laporan</a>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="example" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Obat</th>
+                                        <th>No Batch</th>
+                                        <th>Jumlah Keluar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Obat</th>
+                                        <th>No Batch</th>
+                                        <th>Keterangan</th>
+                                        <th>Jumlah</th>
+                                        <th>Tanggal Keluar</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
                 </div>
                 <!-- /.col -->
             </div>

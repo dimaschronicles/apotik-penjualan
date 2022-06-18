@@ -96,7 +96,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item <?= ($title == 'Laporan Data Obat' || $title == 'Laporan Obat Masuk' || $title == 'Laporan Obat Keluar') ? 'menu-is-opening menu-open' : ''; ?>">
+                <!-- <li class="nav-item <?= ($title == 'Laporan Data Obat' || $title == 'Laporan Obat Masuk' || $title == 'Laporan Obat Keluar') ? 'menu-is-opening menu-open' : ''; ?>">
                     <a href="#" class="nav-link <?= ($title == 'Laporan Data Obat' || $title == 'Laporan Obat Masuk' || $title == 'Laporan Obat Keluar') ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
@@ -118,6 +118,14 @@
                             </a>
                         </li>
                     </ul>
+                </li> -->
+                <li class="nav-item <?= ($title == 'Laporan') ? 'active' : ''; ?>">
+                    <a href="/laporan" class="nav-link <?= ($title == 'Laporan') ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Laporan
+                        </p>
+                    </a>
                 </li>
             </ul>
         </nav>

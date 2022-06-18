@@ -16,6 +16,15 @@ class Laporan extends BaseController
         $this->obatKeluar = new ObatKeluarModel();
     }
 
+    public function index()
+    {
+        $data = [
+            'title' => 'Laporan',
+        ];
+
+        return view('laporan/obat/index', $data);
+    }
+
     public function getObat()
     {
         $html = view('laporan/obat/pdf', [

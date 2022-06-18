@@ -43,8 +43,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>No Batch</th>
                                         <th>Nama Obat</th>
+                                        <th>No Batch</th>
                                         <th>Keterangan</th>
                                         <th>Jumlah</th>
                                         <th>Tanggal Keluar</th>
@@ -56,8 +56,8 @@
                                     foreach ($obatKeluar as $o) : ?>
                                         <tr>
                                             <td><?= $i++; ?></td>
-                                            <td><?= $o['no_batch']; ?></td>
                                             <td><?= $o['nama_obat']; ?></td>
+                                            <td><?= $o['no_batch']; ?></td>
                                             <td><?= $o['keterangan_keluar']; ?></td>
                                             <td><?= $o['jumlah_keluar']; ?></td>
                                             <td><?= $o['tanggal_keluar']; ?></td>
@@ -68,8 +68,8 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>No Batch</th>
                                         <th>Nama Obat</th>
+                                        <th>No Batch</th>
                                         <th>Keterangan</th>
                                         <th>Jumlah</th>
                                         <th>Tanggal Keluar</th>

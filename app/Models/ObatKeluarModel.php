@@ -8,7 +8,7 @@ class ObatKeluarModel extends Model
 {
     protected $table      = 'obat_keluar';
     protected $primaryKey = 'id_obat_keluar';
-    protected $allowedFields = ['id_obat', 'jumlah_keluar', 'keterangan_keluar', 'tanggal_keluar'];
+    protected $allowedFields = ['id_obat', 'stok_awal', 'jumlah_keluar', 'sisa', 'keterangan_keluar', 'tanggal_keluar'];
 
     public function getObatKeluar()
     {

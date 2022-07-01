@@ -58,14 +58,18 @@
                                             <td><?= $s['telp_supplier'] ?></td>
                                             <td><?= $s['alamat_supplier'] ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusSupplier">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusSupplier<?= $s['id_supplier']; ?>">
                                                     <i class="fas fa-trash"></i>
+                                                </button>
+
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal<?= $s['id_supplier']; ?>">
+                                                    <i class="fas fa-info-circle"></i>
                                                 </button>
                                             </td>
                                         </tr>
 
                                         <!-- Modal Hapus -->
-                                        <div class="modal fade" id="hapusSupplier" tabindex="-1" aria-labelledby="hapusSupplierLabel" aria-hidden="true">
+                                        <div class="modal fade" id="hapusSupplier<?= $s['id_supplier']; ?>" tabindex="-1" aria-labelledby="hapusSupplierLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -84,6 +88,55 @@
                                                             <button type="submit" class="btn btn-danger">Ya</button>
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
                                                         </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal<?= $s['id_supplier']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Detail Supplier</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="nama_supplier">Nama Supplier</label>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item"><?= $s['nama_supplier']; ?></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="telp_supplier">No HP</label>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item"><?= $s['telp_supplier']; ?></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="telp_supplier">Telp. Supplier</label>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item"><?= $s['telp_supplier']; ?></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="alamat_supplier">Alamat</label>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item"><?= $s['alamat_supplier']; ?></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="keterangan_supplier">Keterangan</label>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item"><?= $s['keterangan_supplier']; ?></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                     </div>
                                                 </div>
                                             </div>

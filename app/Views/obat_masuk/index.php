@@ -45,9 +45,8 @@
                                         <th>No</th>
                                         <th>Nama Obat</th>
                                         <th>No Batch</th>
-                                        <th>Supplier</th>
+                                        <th>Jumlah Masuk</th>
                                         <th>Tanggal Masuk</th>
-                                        <th>Jumlah</th>
                                         <th>Keterangan</th>
                                     </tr>
                                 </thead>
@@ -58,9 +57,8 @@
                                             <td><?= $i++; ?></td>
                                             <td><?= $o['nama_obat']; ?></td>
                                             <td><?= $o['no_batch']; ?></td>
-                                            <td><?= $o['nama_supplier']; ?></td>
-                                            <td><?= $o['tanggal_masuk']; ?></td>
                                             <td><?= $o['jumlah_masuk']; ?></td>
+                                            <td><?= $o['tanggal_transaksi']; ?></td>
                                             <td><?= $o['keterangan']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -70,9 +68,8 @@
                                         <th>No</th>
                                         <th>Nama Obat</th>
                                         <th>No Batch</th>
-                                        <th>Supplier</th>
+                                        <th>Jumlah Masuk</th>
                                         <th>Tanggal Masuk</th>
-                                        <th>Jumlah</th>
                                         <th>Keterangan</th>
                                     </tr>
                                 </tfoot>

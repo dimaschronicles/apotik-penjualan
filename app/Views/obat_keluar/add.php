@@ -46,7 +46,9 @@
                                         <select class="form-control <?= ($validation->hasError('id_obat')) ? 'is-invalid' : ''; ?>" id="id_obat" name="id_obat">
                                             <option value="">== Pilih Obat ==</option>
                                             <?php foreach ($obat as $o) : ?>
-                                                <option value="<?= $o['id_obat']; ?>" <?= (old('id_obat') == $o['id_obat']) ? 'selected' : ''; ?>><?= $o['no_batch']; ?> - <?= $o['nama_obat']; ?></option>
+                                                <?php if ($o['stok'] != null || $o['stok'] > 1) : ?>
+                                                    <option value="<?= $o['id_obat']; ?>" <?= (old('id_obat') == $o['id_obat']) ? 'selected' : ''; ?>><?= $o['nama_obat']; ?></option>
+                                                <?php endif; ?>
                                             <?php endforeach; ?>
                                         </select>
                                         <div class="invalid-feedback">

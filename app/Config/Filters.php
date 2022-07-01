@@ -70,7 +70,29 @@ class Filters extends BaseConfig
         'isLoggedIn' => [
             'before' => [
                 '/dashboard',
-                '/user'
+                '/user',
+                '/barang',
+                '/barang/*',
+                '/supplier',
+                '/supplier/*',
+                '/jenis',
+                '/jenis/*',
+                '/kategori',
+                '/kategori/*',
+                '/obat',
+                '/obat/*',
+                '/obatmasuk',
+                '/obatmasuk/*',
+                '/obatkeluar',
+                '/obatkeluar/*',
+                '/laporan',
+                '/laporan/*',
+                '/obat_pdf',
+                '/profile',
+                '/editprofile',
+                '/updateprofile',
+                '/changepassword',
+                '/updatepassword',
             ]
         ]
     ];

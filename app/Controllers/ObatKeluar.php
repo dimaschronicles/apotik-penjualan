@@ -4,12 +4,14 @@ namespace App\Controllers;
 
 use App\Models\ObatModel;
 use App\Models\ObatKeluarModel;
+use App\Models\ObatTransaksiModel;
 
 class ObatKeluar extends BaseController
 {
     public function __construct()
     {
         $this->obat = new ObatModel();
+        $this->obatTransaksi = new ObatTransaksiModel();
         $this->obatKeluar = new ObatKeluarModel();
     }
 
@@ -17,7 +19,7 @@ class ObatKeluar extends BaseController
     {
         $data = [
             'title' => 'Obat Keluar',
-            'obatKeluar' => $this->obatKeluar->getObatKeluar(),
+            'obatKeluar' => $this->obatTransaksi->getObatKeluar(),
         ];
 
         return view('obat_keluar/index', $data);
@@ -28,7 +30,7 @@ class ObatKeluar extends BaseController
         $data = [
             'title' => 'Obat Keluar',
             'validation' => \Config\Services::validation(),
-            'obat' => $this->obat->getObat(),
+            'obat' => $this->obat->findAll(),
         ];
 
         return view('obat_keluar/add', $data);
@@ -71,11 +73,13 @@ class ObatKeluar extends BaseController
         $getStok = $this->obat->find($idObat);
         $jumlahStok = intval($getStok['stok']) - intval($jumlahObat);
 
-        $this->obatKeluar->save([
+        $this->obatTransaksi->save([
             'id_obat' => $idObat,
             'jumlah_keluar' => $jumlahObat,
-            'keterangan_keluar' => $this->request->getVar('keterangan'),
-            'tanggal_keluar' => $this->request->getVar('tanggal_keluar'),
+            'jumlah_sisa' => $jumlahStok,
+            'keterangan_transaksi' => $this->request->getVar('keterangan'),
+            'status' => 'keluar',
+            'tanggal_transaksi' => $this->request->getVar('tanggal_keluar'),
         ]);
 
         $this->obat->save([

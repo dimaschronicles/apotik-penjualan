@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $title; ?></title>
+    <title><?= $title; ?> | Apotik Buaran</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
     <!-- Summernote -->
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/plugins/summernote/summernote-bs4.min.css">
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="/path/to/select2.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -40,11 +44,8 @@
         <!-- /.content-wrapper -->
 
         <footer class="main-footer">
-            <strong>Copyright &copy; <?= date('Y'); ?> <a href="https://instagram.com/dimaschronicles" target="blank">@dimaschronicles</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.1.0
-            </div>
+            Copyright <strong>&copy;<?= date('Y'); ?></strong>
+            Apotik Buaran. All rights reserved.
         </footer>
 
         <!-- Control Sidebar -->
@@ -67,6 +68,8 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     <!-- Summernote -->
     <script src="<?= base_url(); ?>/assets/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
 </body>
 
 </html>

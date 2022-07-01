@@ -42,7 +42,7 @@
                         <div class="card-body">
                             <form action="/obat" method="POST">
                                 <?= csrf_field(); ?>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label for="no_batch" class="col-sm-2 col-form-label">No. Batch</label>
                                     <div class="col-sm-10">
                                         <input type="number" class="form-control  <?= ($validation->hasError('no_batch')) ? 'is-invalid' : ''; ?>" id="no_batch" name="no_batch" placeholder="Masukan no batch..." value="<?= old('no_batch'); ?>">
@@ -50,16 +50,11 @@
                                             <?= $validation->getError('no_batch'); ?>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <label for="nama_obat" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control <?= ($validation->hasError('nama_obat')) ? 'is-invalid' : ''; ?>" id="nama_obat" name="nama_obat">
-                                            <option value="">== Pilih Obat ==</option>
-                                            <?php foreach ($barang as $b) : ?>
-                                                <option value="<?= $b['nama_barang']; ?>" <?= (old('nama_obat') == $b['nama_barang']) ? 'selected' : ''; ?>><?= $b['nama_barang']; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                        <input type="text" class="form-control  <?= ($validation->hasError('nama_obat')) ? 'is-invalid' : ''; ?>" id="nama_obat" name="nama_obat" placeholder="Masukan nama obat..." value="<?= old('nama_obat'); ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('nama_obat'); ?>
                                         </div>
@@ -108,10 +103,27 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="id_supplier" class="col-sm-2 col-form-label">Supplier</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control <?= ($validation->hasError('id_supplier')) ? 'is-invalid' : ''; ?>" id="id_supplier" name="id_supplier">
+                                            <option value="">== Pilih Supplier ==</option>
+                                            <?php foreach ($supplier as $o) : ?>
+                                                <option value="<?= $o['id_supplier']; ?>" <?= (old('id_supplier') == $o['id_supplier']) ? 'selected' : ''; ?>><?= $o['nama_supplier']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('id_supplier'); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
                                         <input type="hidden" name="keterangan" value="<?= old('keterangan'); ?>">
                                         <textarea id="summernote" name="keterangan" cols="3"><?= old('keterangan'); ?></textarea>
+                                        <?php if ($validation->hasError('keterangan')) : ?>
+                                            <p class="text-danger" style="font-size: 13px;"><?= $validation->getError('keterangan'); ?></p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group row">

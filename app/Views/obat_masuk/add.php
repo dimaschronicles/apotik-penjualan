@@ -44,13 +44,22 @@
                                     <label for="id_obat" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
                                         <select class="form-control <?= ($validation->hasError('id_obat')) ? 'is-invalid' : ''; ?>" id="id_obat" name="id_obat">
-                                            <option value="">== Pilih Obat ==</option>
+                                            <option value="">=== Pilih Obat ===</option>
                                             <?php foreach ($obat as $o) : ?>
-                                                <option value="<?= $o['id_obat']; ?>" <?= (old('id_obat') == $o['id_obat']) ? 'selected' : ''; ?>><?= $o['no_batch']; ?> - <?= $o['nama_obat']; ?></option>
+                                                <option value="<?= $o['id_obat']; ?>" <?= (old('id_obat') == $o['id_obat']) ? 'selected' : ''; ?>><?= $o['nama_obat']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('id_obat'); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="no_batch" class="col-sm-2 col-form-label">No. Batch</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control  <?= ($validation->hasError('no_batch')) ? 'is-invalid' : ''; ?>" id="no_batch" name="no_batch" placeholder="Masukan no batch..." value="<?= old('no_batch'); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('no_batch'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -69,20 +78,6 @@
                                         <input type="date" class="form-control  <?= ($validation->hasError('tanggal_masuk')) ? 'is-invalid' : ''; ?>" id="tanggal_masuk" name="tanggal_masuk" value="<?= old('tanggal_masuk'); ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('tanggal_masuk'); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="id_supplier" class="col-sm-2 col-form-label">Supplier</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control <?= ($validation->hasError('id_supplier')) ? 'is-invalid' : ''; ?>" id="id_supplier" name="id_supplier">
-                                            <option value="">== Pilih Supplier ==</option>
-                                            <?php foreach ($supplier as $o) : ?>
-                                                <option value="<?= $o['id_supplier']; ?>" <?= (old('id_supplier') == $o['id_supplier']) ? 'selected' : ''; ?>><?= $o['nama_supplier']; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('id_supplier'); ?>
                                         </div>
                                     </div>
                                 </div>

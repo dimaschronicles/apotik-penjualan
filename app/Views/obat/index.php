@@ -43,10 +43,10 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>No Batch</th>
                                         <th>Nama Obat</th>
                                         <th>Kategori</th>
                                         <th>Jenis</th>
+                                        <th>Supplier</th>
                                         <th>Stok</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -56,13 +56,13 @@
                                     foreach ($obat as $o) : ?>
                                         <tr>
                                             <td><?= $i++; ?></td>
-                                            <td><?= $o['no_batch']; ?></td>
                                             <td><?= $o['nama_obat']; ?></td>
                                             <td><?= $o['kategori']; ?></td>
                                             <td><?= $o['jenis']; ?></td>
+                                            <td><?= $o['nama_supplier']; ?></td>
                                             <td><?= ($o['stok'] == null) ? 0 : $o['stok']; ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusObat">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusObat<?= $o['id_obat']; ?>">
                                                     Hapus
                                                 </button>
                                                 <a href="/obat/<?= $o['id_obat']; ?>/edit" class="btn btn-warning">Edit</a>
@@ -70,7 +70,7 @@
                                             </td>
                                         </tr>
 
-                                        <div class="modal fade" id="hapusObat" tabindex="-1" aria-labelledby="hapusObatLabel" aria-hidden="true">
+                                        <div class="modal fade" id="hapusObat<?= $o['id_obat']; ?>" tabindex="-1" aria-labelledby="hapusObatLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -98,10 +98,10 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>No Batch</th>
                                         <th>Nama Obat</th>
                                         <th>Kategori</th>
                                         <th>Jenis</th>
+                                        <th>Supplier</th>
                                         <th>Stok</th>
                                         <th>Aksi</th>
                                     </tr>

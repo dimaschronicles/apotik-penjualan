@@ -54,14 +54,14 @@
                                             <td><?= $i++ ?></td>
                                             <td><?= $b['nama_barang'] ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusBarang">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusBarang<?= $b['id_barang']; ?>">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
                                         </tr>
 
                                         <!-- Modal Hapus -->
-                                        <div class="modal fade" id="hapusBarang" tabindex="-1" aria-labelledby="hapusBarangLabel" aria-hidden="true">
+                                        <div class="modal fade" id="hapusBarang<?= $b['id_barang']; ?>" tabindex="-1" aria-labelledby="hapusBarangLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

@@ -39,6 +39,9 @@ $routes->get('/forgot_password', 'Auth::forgot_password');
 $routes->get('/verify/(:any)', 'Auth::verify/$1');
 $routes->get('/resetpassword/(:any)', 'Auth::resetpassword/$1');
 
+// dashboard
+$routes->get('/dashboard', 'Dashboard::index');
+
 // barang
 $routes->get('/barang', 'Barang::index');
 $routes->post('/barang', 'Barang::save');
@@ -47,22 +50,22 @@ $routes->delete('/barang/(:any)', 'Barang::delete/$1');
 // supplier
 $routes->get('/supplier', 'Supplier::index');
 $routes->post('/supplier', 'Supplier::save');
-$routes->delete('/supplier/(:any)', 'Supplier::delete/$1');
+$routes->delete('/supplier/(:num)', 'Supplier::delete/$1');
 
 // satuan
 $routes->get('/satuan', 'Satuan::index');
 $routes->post('/satuan', 'Satuan::save');
-$routes->delete('/satuan/(:any)', 'Satuan::delete/$1');
+$routes->delete('/satuan/(:num)', 'Satuan::delete/$1');
 
 // jenis
 $routes->get('/jenis', 'Jenis::index');
 $routes->post('/jenis', 'Jenis::save');
-$routes->delete('/jenis/(:any)', 'Jenis::delete/$1');
+$routes->delete('/jenis/(:num)', 'Jenis::delete/$1');
 
 // kategori
 $routes->get('/kategori', 'Kategori::index');
 $routes->post('/kategori', 'Kategori::save');
-$routes->delete('/kategori/(:any)', 'Kategori::delete/$1');
+$routes->delete('/kategori/(:num)', 'Kategori::delete/$1');
 
 // obat
 $routes->get('/obat', 'Obat::index');
@@ -89,6 +92,15 @@ $routes->get('/obatmasukpdf', 'Laporan::obatMasukPdf');
 $routes->get('/laporanobatkeluar', 'Laporan::obatKeluar');
 $routes->get('/obatkeluarpdf', 'Laporan::obatKeluarPdf');
 
+// laporan stok obat
+$routes->get('/laporan', 'Laporan::index');
+$routes->get('/obatpdf', 'Laporan::getObatPdf');
+
+$routes->get('/profile', 'Profile::index');
+$routes->get('/editprofile', 'Profile::editProfile');
+$routes->post('/updateprofile', 'Profile::updateProfile');
+$routes->get('/changepassword', 'Profile::changePassword');
+$routes->post('/updatepassword', 'Profile::updatePassword');
 
 /*
  * --------------------------------------------------------------------

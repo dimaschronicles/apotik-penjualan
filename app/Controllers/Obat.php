@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\BarangModel;
 use App\Models\JenisModel;
 use App\Models\KategoriModel;
 use App\Models\ObatModel;
@@ -16,7 +15,6 @@ class Obat extends BaseController
         $this->satuan = new SatuanModel();
         $this->kategori = new KategoriModel();
         $this->supplier = new SupplierModel();
-        $this->barang = new BarangModel();
         $this->jenis = new JenisModel();
         $this->obat = new ObatModel();
     }
@@ -25,7 +23,7 @@ class Obat extends BaseController
     {
         $data = [
             'title' => 'Data Obat',
-            'obat' => $this->obat->findAll(),
+            'obat' => $this->obat->getObat(),
         ];
 
         return view('obat/index', $data);
@@ -39,7 +37,6 @@ class Obat extends BaseController
             'satuan' => $this->satuan->findAll(),
             'kategori' => $this->kategori->findAll(),
             'supplier' => $this->supplier->findAll(),
-            'barang' => $this->barang->findAll(),
             'jenis' => $this->jenis->findAll(),
         ];
 
@@ -49,12 +46,6 @@ class Obat extends BaseController
     public function save()
     {
         if (!$this->validate([
-            'no_batch' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'No Batch harus diisi!',
-                ]
-            ],
             'nama_obat' => [
                 'rules' => 'required',
                 'errors' => [
@@ -79,6 +70,12 @@ class Obat extends BaseController
                     'required' => 'Satuan harus diisi!',
                 ]
             ],
+            'id_supplier' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Supplier harus diisi!',
+                ]
+            ],
             'keterangan' => [
                 'rules' => 'required',
                 'errors' => [
@@ -90,11 +87,11 @@ class Obat extends BaseController
         }
 
         $this->obat->save([
-            'no_batch' => $this->request->getVar('no_batch'),
             'nama_obat' => $this->request->getVar('nama_obat'),
             'jenis' => $this->request->getVar('nama_jenis'),
             'kategori' => $this->request->getVar('nama_kategori'),
             'satuan' => $this->request->getVar('nama_satuan'),
+            'id_supplier' => $this->request->getVar('id_supplier'),
             'keterangan' => $this->request->getVar('keterangan'),
             'time_created' => time(),
         ]);
@@ -112,9 +109,8 @@ class Obat extends BaseController
             'satuan' => $this->satuan->findAll(),
             'kategori' => $this->kategori->findAll(),
             'supplier' => $this->supplier->findAll(),
-            'barang' => $this->barang->findAll(),
             'jenis' => $this->jenis->findAll(),
-            'obat' => $this->obat->find($id),
+            'obat' => $this->obat->getObat($id),
         ];
 
         return view('obat/edit', $data);
@@ -123,12 +119,6 @@ class Obat extends BaseController
     public function update($id = null)
     {
         if (!$this->validate([
-            'no_batch' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'No Batch harus diisi!',
-                ]
-            ],
             'nama_obat' => [
                 'rules' => 'required',
                 'errors' => [
@@ -153,6 +143,12 @@ class Obat extends BaseController
                     'required' => 'Satuan harus diisi!',
                 ]
             ],
+            'id_supplier' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Supplier harus diisi!',
+                ]
+            ],
             'keterangan' => [
                 'rules' => 'required',
                 'errors' => [
@@ -165,11 +161,11 @@ class Obat extends BaseController
 
         $this->obat->save([
             'id_obat' => $id,
-            'no_batch' => $this->request->getVar('no_batch'),
             'nama_obat' => $this->request->getVar('nama_obat'),
             'jenis' => $this->request->getVar('nama_jenis'),
             'kategori' => $this->request->getVar('nama_kategori'),
             'satuan' => $this->request->getVar('nama_satuan'),
+            'id_supplier' => $this->request->getVar('id_supplier'),
             'keterangan' => $this->request->getVar('keterangan'),
             'time_created' => time(),
         ]);
@@ -190,7 +186,7 @@ class Obat extends BaseController
     {
         $data = [
             'title' => 'Detail Obat',
-            'obat' => $this->obat->find($id),
+            'obat' => $this->obat->getObat($id),
         ];
 
         return view('obat/show', $data);

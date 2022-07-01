@@ -44,9 +44,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Obat</th>
-                                        <th>No Batch</th>
-                                        <th>Keterangan</th>
-                                        <th>Jumlah</th>
+                                        <th>Jumlah Keluar</th>
                                         <th>Tanggal Keluar</th>
                                         <th>Keterangan</th>
                                     </tr>
@@ -57,11 +55,9 @@
                                         <tr>
                                             <td><?= $i++; ?></td>
                                             <td><?= $o['nama_obat']; ?></td>
-                                            <td><?= $o['no_batch']; ?></td>
-                                            <td><?= $o['keterangan_keluar']; ?></td>
                                             <td><?= $o['jumlah_keluar']; ?></td>
-                                            <td><?= $o['tanggal_keluar']; ?></td>
-                                            <td><?= $o['keterangan']; ?></td>
+                                            <td><?= $o['tanggal_transaksi']; ?></td>
+                                            <td><?= $o['keterangan_transaksi']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -69,9 +65,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Obat</th>
-                                        <th>No Batch</th>
-                                        <th>Keterangan</th>
-                                        <th>Jumlah</th>
+                                        <th>Jumlah Keluar</th>
                                         <th>Tanggal Keluar</th>
                                         <th>Keterangan</th>
                                     </tr>

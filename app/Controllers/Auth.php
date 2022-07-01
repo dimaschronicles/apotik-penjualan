@@ -20,7 +20,7 @@ class Auth extends BaseController
         }
 
         $data = [
-            'title' => 'Login | Apotek Buaran',
+            'title' => 'Login',
             'validation' => \Config\Services::validation()
         ];
 
@@ -58,6 +58,8 @@ class Auth extends BaseController
                         'id_user' => $dataUser['id_user'],
                         'username' => $dataUser['username'],
                         'nama' => $dataUser['nama'],
+                        'email' => $dataUser['email'],
+                        'no_hp' => $dataUser['no_hp'],
                         'role' => $dataUser['role'],
                         // 'foto' => $dataUser['foto']
                     ]);
@@ -88,7 +90,7 @@ class Auth extends BaseController
         }
 
         $data = [
-            'title' => 'Register | Apotek Buaran',
+            'title' => 'Register',
             'validation' => \Config\Services::validation()
         ];
 
@@ -313,7 +315,7 @@ class Auth extends BaseController
 
     public function logout()
     {
-        $array_items = ['id_user', 'nama', 'username', 'role'];
+        $array_items = ['id_user', 'nama', 'email', 'no_hp', 'username', 'role'];
         session()->remove($array_items);
         session()->setFlashdata('message', '<div class="alert alert-success" role="alert">Anda berhasil keluar!</div>');
         return redirect()->to('/')->withInput();

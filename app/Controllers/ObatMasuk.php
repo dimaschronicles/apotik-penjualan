@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ObatMasukModel;
 use App\Models\ObatModel;
+use App\Models\ObatTransaksiModel;
 use App\Models\SupplierModel;
 
 class ObatMasuk extends BaseController
@@ -13,13 +14,14 @@ class ObatMasuk extends BaseController
         $this->supplier = new SupplierModel();
         $this->obat = new ObatModel();
         $this->obatMasuk = new ObatMasukModel();
+        $this->obatTransaksi = new ObatTransaksiModel();
     }
 
     public function index()
     {
         $data = [
             'title' => 'Obat Masuk',
-            'obatMasuk' => $this->obatMasuk->getObatMasuk(),
+            'obatMasuk' => $this->obatTransaksi->getObatMasuk(),
         ];
 
         return view('obat_masuk/index', $data);
@@ -46,6 +48,13 @@ class ObatMasuk extends BaseController
                     'required' => 'Nama Obat harus diisi!',
                 ]
             ],
+            'no_batch' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'No Batch harus diisi!',
+                    'numeric' => 'No Batch harus angka!',
+                ]
+            ],
             'jumlah' => [
                 'rules' => 'required|numeric',
                 'errors' => [
@@ -57,12 +66,6 @@ class ObatMasuk extends BaseController
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Tanggal Masuk harus diisi!',
-                ]
-            ],
-            'id_supplier' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Supplier harus diisi!',
                 ]
             ],
             'keterangan' => [
@@ -80,12 +83,14 @@ class ObatMasuk extends BaseController
         $getStok = $this->obat->find($idObat);
         $jumlahStok = intval($jumlahObat) + intval($getStok['stok']);
 
-        $this->obatMasuk->save([
+        $this->obatTransaksi->save([
             'id_obat' => $idObat,
+            'no_batch' => $this->request->getVar('no_batch'),
             'jumlah_masuk' => $jumlahObat,
-            'id_supplier' => $this->request->getVar('id_supplier'),
-            'keterangan_masuk' => $this->request->getVar('keterangan'),
-            'tanggal_masuk' => $this->request->getVar('tanggal_masuk'),
+            'jumlah_sisa' => $jumlahStok,
+            'keterangan_transaksi' => $this->request->getVar('keterangan'),
+            'status' => 'masuk',
+            'tanggal_transaksi' => $this->request->getVar('tanggal_masuk'),
         ]);
 
         $this->obat->save([

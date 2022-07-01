@@ -33,12 +33,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/barang" class="nav-link <?= ($title == 'Barang') ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Barang</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="/jenis" class="nav-link <?= ($title == 'Jenis') ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>

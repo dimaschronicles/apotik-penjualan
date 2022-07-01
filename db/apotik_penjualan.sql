@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Bulan Mei 2022 pada 16.35
+-- Waktu pembuatan: 01 Jul 2022 pada 15.20
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -32,14 +32,6 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `barang`
---
-
-INSERT INTO `barang` (`id_barang`, `nama_barang`) VALUES
-(7, 'Bodrex'),
-(8, 'Paramex');
-
 -- --------------------------------------------------------
 
 --
@@ -56,8 +48,13 @@ CREATE TABLE `jenis` (
 --
 
 INSERT INTO `jenis` (`id_jenis`, `nama_jenis`) VALUES
-(2, 'Obat Luar'),
-(3, 'Obat Kerad');
+(1, 'Obat Cair'),
+(2, 'Tablet'),
+(3, 'Kapsul'),
+(4, 'Obat Oles'),
+(5, 'Obat Tetes'),
+(6, 'Inhaler'),
+(7, 'Obat Suntik');
 
 -- --------------------------------------------------------
 
@@ -75,8 +72,13 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
-(2, 'Syrup'),
-(3, 'Obat Anak');
+(1, 'Obat Bebas'),
+(2, 'Obat Bebas Terbatas'),
+(3, 'Obat Keras'),
+(4, 'Obat Golongan Narkotika'),
+(5, 'Obat Herbal'),
+(6, 'Obat Psikotropika'),
+(7, 'Obat Wajib Apotek');
 
 -- --------------------------------------------------------
 
@@ -86,12 +88,13 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 
 CREATE TABLE `obat` (
   `id_obat` int(11) NOT NULL,
-  `no_batch` varchar(20) NOT NULL,
+  `no_batch_` varchar(20) DEFAULT NULL,
   `nama_obat` varchar(128) NOT NULL,
   `jenis` varchar(128) NOT NULL,
   `kategori` varchar(128) NOT NULL,
   `satuan` varchar(128) NOT NULL,
   `stok` int(11) DEFAULT NULL,
+  `id_supplier` int(11) NOT NULL,
   `keterangan` text NOT NULL,
   `time_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -100,9 +103,12 @@ CREATE TABLE `obat` (
 -- Dumping data untuk tabel `obat`
 --
 
-INSERT INTO `obat` (`id_obat`, `no_batch`, `nama_obat`, `jenis`, `kategori`, `satuan`, `stok`, `keterangan`, `time_created`) VALUES
-(2, '345345', 'Bodrex', 'Obat Luar', 'Syrup', 'Pcs', 74, '<ol><li>asdasda</li><li>sd</li><li>as</li><li>asd</li><li>asd</li><li>as</li><li>d</li></ol>', 1653062716),
-(3, '12323', 'Paramex', 'Obat Kerad', 'Syrup', 'Pcs', 10, '<p>asdasdasd</p>', 1653056755);
+INSERT INTO `obat` (`id_obat`, `no_batch_`, `nama_obat`, `jenis`, `kategori`, `satuan`, `stok`, `id_supplier`, `keterangan`, `time_created`) VALUES
+(1, NULL, 'Bodrex', 'Obat Cair', 'Obat Bebas', 'Buah', 110, 1, '<p>sdsadasd</p>', 1656338665),
+(2, NULL, 'Paramex', 'Tablet', 'Obat Bebas', 'Buah', 55, 2, '<p>asdasd</p>', 1656338674),
+(3, NULL, 'Promag', 'Tablet', 'Obat Bebas', 'PCS', NULL, 1, '<p>asdasd</p>', 1656609768),
+(4, NULL, 'Tolak Angin', 'Obat Cair', 'Obat Bebas', 'PCS', NULL, 1, '<p>Obat bebas usia 17+</p>', 1656603079),
+(5, NULL, 'Antangin', 'Obat Cair', 'Obat Bebas', 'Buah', NULL, 1, '<p>asd</p>', 1656679339);
 
 -- --------------------------------------------------------
 
@@ -113,17 +119,12 @@ INSERT INTO `obat` (`id_obat`, `no_batch`, `nama_obat`, `jenis`, `kategori`, `sa
 CREATE TABLE `obat_keluar` (
   `id_obat_keluar` int(11) NOT NULL,
   `id_obat` int(11) NOT NULL,
+  `stok_awal` int(11) NOT NULL,
   `jumlah_keluar` int(11) NOT NULL,
+  `sisa` int(11) NOT NULL,
   `keterangan_keluar` text NOT NULL,
   `tanggal_keluar` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `obat_keluar`
---
-
-INSERT INTO `obat_keluar` (`id_obat_keluar`, `id_obat`, `jumlah_keluar`, `keterangan_keluar`, `tanggal_keluar`) VALUES
-(0, 3, 12, '<p>ad</p>', '2022-05-28');
 
 -- --------------------------------------------------------
 
@@ -135,20 +136,42 @@ CREATE TABLE `obat_masuk` (
   `id_obat_masuk` int(11) NOT NULL,
   `id_obat` int(11) NOT NULL,
   `id_supplier` int(11) NOT NULL,
+  `stok_awal` int(11) NOT NULL,
   `jumlah_masuk` int(11) NOT NULL,
+  `sisa` int(11) NOT NULL,
   `keterangan_masuk` text NOT NULL,
   `tanggal_masuk` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data untuk tabel `obat_masuk`
+-- Struktur dari tabel `obat_transaksi`
 --
 
-INSERT INTO `obat_masuk` (`id_obat_masuk`, `id_obat`, `id_supplier`, `jumlah_masuk`, `keterangan_masuk`, `tanggal_masuk`) VALUES
-(2, 2, 1, 40, '<p>asd</p>', '2022-05-25'),
-(3, 2, 1, 34, '<p>esr</p>', '2022-05-18'),
-(4, 3, 1, 10, '<p>asd</p>', '2022-05-19'),
-(5, 3, 1, 12, '<p>asd</p>', '2022-05-20');
+CREATE TABLE `obat_transaksi` (
+  `id_transaksi` int(11) NOT NULL,
+  `id_obat` int(11) NOT NULL,
+  `no_batch` varchar(20) DEFAULT NULL,
+  `jumlah_masuk` int(11) DEFAULT NULL,
+  `jumlah_keluar` int(11) DEFAULT NULL,
+  `jumlah_sisa` int(11) DEFAULT NULL,
+  `id_supplier` int(11) DEFAULT NULL,
+  `keterangan_transaksi` text NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `tanggal_transaksi` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `obat_transaksi`
+--
+
+INSERT INTO `obat_transaksi` (`id_transaksi`, `id_obat`, `no_batch`, `jumlah_masuk`, `jumlah_keluar`, `jumlah_sisa`, `id_supplier`, `keterangan_transaksi`, `status`, `tanggal_transaksi`) VALUES
+(1, 1, '123123', 100, NULL, 100, NULL, '<p>asd</p>', 'masuk', '2022-07-01'),
+(2, 1, '123', 45, NULL, 145, NULL, '<p>asd</p>', 'masuk', '2022-07-01'),
+(3, 1, NULL, NULL, 35, 110, NULL, '<p>asd</p>', 'keluar', '2022-07-02'),
+(4, 2, '31412', 70, NULL, 70, NULL, '<p>asd</p>', 'masuk', '2022-07-02'),
+(5, 2, NULL, NULL, 15, 55, NULL, '<p>da</p>', 'keluar', '2022-07-03');
 
 -- --------------------------------------------------------
 
@@ -166,8 +189,12 @@ CREATE TABLE `satuan` (
 --
 
 INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
-(4, 'Box'),
-(5, 'Pcs');
+(1, 'Buah'),
+(2, 'PCS'),
+(3, 'Box'),
+(4, 'Kaplet'),
+(5, 'Unit'),
+(6, 'Botol');
 
 -- --------------------------------------------------------
 
@@ -188,7 +215,8 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `telp_supplier`, `alamat_supplier`, `keterangan_supplier`) VALUES
-(1, 'Semarang', '089234567891', 'Jl. Soekarno', 'askdjaklsjdklasjkdaskldj');
+(1, 'Semarang', '089234567891', 'Jl. Soekarno', 'askdjaklsjdklasjkdaskldj'),
+(2, 'Solo', '17231232323', 'Jl Kemerdekaan', 'Supplier alat kesehatan');
 
 -- --------------------------------------------------------
 
@@ -245,10 +273,22 @@ ALTER TABLE `obat`
   ADD PRIMARY KEY (`id_obat`);
 
 --
+-- Indeks untuk tabel `obat_keluar`
+--
+ALTER TABLE `obat_keluar`
+  ADD PRIMARY KEY (`id_obat_keluar`);
+
+--
 -- Indeks untuk tabel `obat_masuk`
 --
 ALTER TABLE `obat_masuk`
   ADD PRIMARY KEY (`id_obat_masuk`);
+
+--
+-- Indeks untuk tabel `obat_transaksi`
+--
+ALTER TABLE `obat_transaksi`
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indeks untuk tabel `satuan`
@@ -276,43 +316,55 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis`
 --
 ALTER TABLE `jenis`
-  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `obat_keluar`
+--
+ALTER TABLE `obat_keluar`
+  MODIFY `id_obat_keluar` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `obat_masuk`
 --
 ALTER TABLE `obat_masuk`
-  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `obat_transaksi`
+--
+ALTER TABLE `obat_transaksi`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `satuan`
 --
 ALTER TABLE `satuan`
-  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

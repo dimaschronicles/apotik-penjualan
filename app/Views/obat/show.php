@@ -42,10 +42,6 @@
                         <div class="card-body">
                             <ul class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <b>No Batch :</b>
-                                    <span><?= $obat['no_batch']; ?></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <b>Nama Obat :</b>
                                     <span><?= $obat['nama_obat']; ?></span>
                                 </li>
@@ -64,6 +60,10 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <b>Stok :</b>
                                     <span><?= ($obat['stok'] == null) ? 0 : $obat['stok']; ?></span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b>Supplier :</b>
+                                    <span><?= $obat['nama_supplier']; ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <b>Keterangan :</b>

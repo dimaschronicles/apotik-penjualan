@@ -36,7 +36,7 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            Form Tambah Data Obat
+                            Form Edit Data Obat
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -44,9 +44,14 @@
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="PUT">
                                 <div class="form-group row">
-                                    <label for="nama_obat" class="col-sm-2 col-form-label">Nama</label>
+                                    <label for="nama_obat" class="col-sm-2 col-form-label">Nama Obat</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control  <?= ($validation->hasError('nama_obat')) ? 'is-invalid' : ''; ?>" id="nama_obat" name="nama_obat" placeholder="Masukan nama obat..." value="<?= ($obat['nama_obat']) ? $obat['nama_obat'] : old('nama_obat'); ?>">
+                                        <select class="form-control  <?= ($validation->hasError('nama_obat')) ? 'is-invalid' : ''; ?>" id="nama_obat" name="nama_obat">
+                                            <option value="">== Pilih Obat ==</option>
+                                            <?php foreach ($barang as $b) : ?>
+                                                <option value="<?= $b['nama_barang']; ?>" <?= ($obat['nama_obat'] == $b['nama_barang']) ? 'selected' : old('nama_obat'); ?>><?= $b['nama_barang']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('nama_obat'); ?>
                                         </div>

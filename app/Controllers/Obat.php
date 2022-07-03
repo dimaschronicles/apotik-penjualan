@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\BarangModel;
 use App\Models\JenisModel;
 use App\Models\KategoriModel;
 use App\Models\ObatModel;
@@ -12,6 +13,7 @@ class Obat extends BaseController
 {
     public function __construct()
     {
+        $this->barang = new BarangModel();
         $this->satuan = new SatuanModel();
         $this->kategori = new KategoriModel();
         $this->supplier = new SupplierModel();
@@ -34,6 +36,7 @@ class Obat extends BaseController
         $data = [
             'title' => 'Tambah Data Obat',
             'validation' => \Config\Services::validation(),
+            'barang' => $this->barang->findAll(),
             'satuan' => $this->satuan->findAll(),
             'kategori' => $this->kategori->findAll(),
             'supplier' => $this->supplier->findAll(),
@@ -106,6 +109,7 @@ class Obat extends BaseController
         $data = [
             'title' => 'Ubah Data Obat',
             'validation' => \Config\Services::validation(),
+            'barang' => $this->barang->findAll(),
             'satuan' => $this->satuan->findAll(),
             'kategori' => $this->kategori->findAll(),
             'supplier' => $this->supplier->findAll(),

@@ -59,7 +59,7 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3><?= $jumlahTotalStok['stok']; ?></h3>
+                            <h3><?= (!$jumlahTotalStok['stok']) ? '0' : $jumlahTotalStok['stok']; ?></h3>
                             <p>Total Stok Obat</p>
                         </div>
                         <div class="icon">

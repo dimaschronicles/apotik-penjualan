@@ -54,10 +54,6 @@
                                     <span><?= $obat['kategori']; ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <b>Satuan :</b>
-                                    <span><?= $obat['satuan']; ?></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <b>Stok :</b>
                                     <span><?= ($obat['stok'] == null) ? 0 : $obat['stok']; ?></span>
                                 </li>

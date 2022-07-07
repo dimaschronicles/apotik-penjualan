@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\ObatMasukModel;
 use App\Models\ObatModel;
 use App\Models\ObatTransaksiModel;
+use App\Models\SatuanModel;
 use App\Models\SupplierModel;
 
 class ObatMasuk extends BaseController
@@ -13,6 +14,7 @@ class ObatMasuk extends BaseController
     {
         $this->supplier = new SupplierModel();
         $this->obat = new ObatModel();
+        $this->satuan = new SatuanModel();
         $this->obatMasuk = new ObatMasukModel();
         $this->obatTransaksi = new ObatTransaksiModel();
     }
@@ -33,6 +35,7 @@ class ObatMasuk extends BaseController
             'title' => 'Obat Masuk',
             'validation' => \Config\Services::validation(),
             'obat' => $this->obat->findAll(),
+            'satuan' => $this->satuan->findAll(),
             'supplier' => $this->supplier->findAll(),
         ];
 
@@ -62,6 +65,12 @@ class ObatMasuk extends BaseController
                     'numeric' => 'Jumlah harus angka!',
                 ]
             ],
+            'nama_satuan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Satuan harus diisi!',
+                ]
+            ],
             'tanggal_masuk' => [
                 'rules' => 'required',
                 'errors' => [
@@ -86,6 +95,7 @@ class ObatMasuk extends BaseController
         $this->obatTransaksi->save([
             'id_obat' => $idObat,
             'no_batch' => $this->request->getVar('no_batch'),
+            'id_satuan' => $this->request->getVar('nama_satuan '),
             'jumlah_masuk' => $jumlahObat,
             'jumlah_sisa' => $jumlahStok,
             'keterangan_transaksi' => $this->request->getVar('keterangan'),

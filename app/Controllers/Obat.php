@@ -14,7 +14,6 @@ class Obat extends BaseController
     public function __construct()
     {
         $this->barang = new BarangModel();
-        $this->satuan = new SatuanModel();
         $this->kategori = new KategoriModel();
         $this->supplier = new SupplierModel();
         $this->jenis = new JenisModel();
@@ -37,7 +36,6 @@ class Obat extends BaseController
             'title' => 'Tambah Data Obat',
             'validation' => \Config\Services::validation(),
             'barang' => $this->barang->findAll(),
-            'satuan' => $this->satuan->findAll(),
             'kategori' => $this->kategori->findAll(),
             'supplier' => $this->supplier->findAll(),
             'jenis' => $this->jenis->findAll(),
@@ -67,12 +65,6 @@ class Obat extends BaseController
                     'required' => 'Kategori harus diisi!',
                 ]
             ],
-            'nama_satuan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Satuan harus diisi!',
-                ]
-            ],
             'id_supplier' => [
                 'rules' => 'required',
                 'errors' => [
@@ -93,7 +85,6 @@ class Obat extends BaseController
             'nama_obat' => $this->request->getVar('nama_obat'),
             'jenis' => $this->request->getVar('nama_jenis'),
             'kategori' => $this->request->getVar('nama_kategori'),
-            'satuan' => $this->request->getVar('nama_satuan'),
             'id_supplier' => $this->request->getVar('id_supplier'),
             'keterangan' => $this->request->getVar('keterangan'),
             'time_created' => time(),
@@ -110,7 +101,6 @@ class Obat extends BaseController
             'title' => 'Ubah Data Obat',
             'validation' => \Config\Services::validation(),
             'barang' => $this->barang->findAll(),
-            'satuan' => $this->satuan->findAll(),
             'kategori' => $this->kategori->findAll(),
             'supplier' => $this->supplier->findAll(),
             'jenis' => $this->jenis->findAll(),
@@ -141,12 +131,6 @@ class Obat extends BaseController
                     'required' => 'Kategori harus diisi!',
                 ]
             ],
-            'nama_satuan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Satuan harus diisi!',
-                ]
-            ],
             'id_supplier' => [
                 'rules' => 'required',
                 'errors' => [
@@ -168,7 +152,6 @@ class Obat extends BaseController
             'nama_obat' => $this->request->getVar('nama_obat'),
             'jenis' => $this->request->getVar('nama_jenis'),
             'kategori' => $this->request->getVar('nama_kategori'),
-            'satuan' => $this->request->getVar('nama_satuan'),
             'id_supplier' => $this->request->getVar('id_supplier'),
             'keterangan' => $this->request->getVar('keterangan'),
             'time_created' => time(),

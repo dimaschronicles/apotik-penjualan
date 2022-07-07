@@ -66,9 +66,23 @@
                                 <div class="form-group row">
                                     <label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control  <?= ($validation->hasError('jumlah')) ? 'is-invalid' : ''; ?>" id="jumlah" name="jumlah" placeholder="Masukan jumlah..." value="<?= old('jumlah'); ?>">
+                                        <input type="number" class="form-control  <?= ($validation->hasError('jumlah')) ? 'is-invalid' : ''; ?>" id="jumlah" name="jumlah" placeholder="Masukan jumlah per pcs..." value="<?= old('jumlah'); ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('jumlah'); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="nama_satuan" class="col-sm-2 col-form-label">Satuan</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control  <?= ($validation->hasError('nama_satuan')) ? 'is-invalid' : ''; ?>" id="nama_satuan" name="nama_satuan">
+                                            <option value="">== Pilih Satuan ==</option>
+                                            <?php foreach ($satuan as $s) : ?>
+                                                <option value="<?= $s['nama_satuan']; ?>" <?= (old('nama_satuan') == $s['nama_satuan']) ? 'selected' : ''; ?>><?= $s['nama_satuan']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('nama_satuan'); ?>
                                         </div>
                                     </div>
                                 </div>

@@ -57,12 +57,12 @@
                                 <p>Supplier</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/satuan" class="nav-link <?= ($title == 'Satuan') ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Satuan</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item <?= ($title == 'Data Obat') ? 'active' : ''; ?>">

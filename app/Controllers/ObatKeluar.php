@@ -12,7 +12,6 @@ class ObatKeluar extends BaseController
     public function __construct()
     {
         $this->obat = new ObatModel();
-        $this->satuan = new SatuanModel();
         $this->obatTransaksi = new ObatTransaksiModel();
         $this->obatKeluar = new ObatKeluarModel();
     }
@@ -33,7 +32,6 @@ class ObatKeluar extends BaseController
             'title' => 'Obat Keluar',
             'validation' => \Config\Services::validation(),
             'obat' => $this->obat->findAll(),
-            'satuan' => $this->satuan->findAll(),
         ];
 
         return view('obat_keluar/add', $data);
@@ -53,12 +51,6 @@ class ObatKeluar extends BaseController
                 'errors' => [
                     'required' => 'Jumlah harus diisi!',
                     'numeric' => 'Jumlah harus angka!',
-                ]
-            ],
-            'nama_satuan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Satuan harus diisi!',
                 ]
             ],
             'tanggal_keluar' => [
@@ -86,7 +78,6 @@ class ObatKeluar extends BaseController
             'id_obat' => $idObat,
             'jumlah_keluar' => $jumlahObat,
             'jumlah_sisa' => $jumlahStok,
-            'nama_satuan' => $this->request->getVar('nama_satuan'),
             'keterangan_transaksi' => $this->request->getVar('keterangan'),
             'status' => 'keluar',
             'tanggal_transaksi' => $this->request->getVar('tanggal_keluar'),

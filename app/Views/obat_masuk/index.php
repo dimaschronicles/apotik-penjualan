@@ -59,7 +59,7 @@
                                             <td><?= $o['no_batch']; ?></td>
                                             <td><?= $o['jumlah_masuk']; ?></td>
                                             <td><?= $o['tanggal_transaksi']; ?></td>
-                                            <td><?= $o['keterangan']; ?></td>
+                                            <td><?= $o['keterangan_transaksi']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

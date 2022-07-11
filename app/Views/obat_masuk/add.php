@@ -73,20 +73,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="nama_satuan" class="col-sm-2 col-form-label">Satuan</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control  <?= ($validation->hasError('nama_satuan')) ? 'is-invalid' : ''; ?>" id="nama_satuan" name="nama_satuan">
-                                            <option value="">== Pilih Satuan ==</option>
-                                            <?php foreach ($satuan as $s) : ?>
-                                                <option value="<?= $s['nama_satuan']; ?>" <?= (old('nama_satuan') == $s['nama_satuan']) ? 'selected' : ''; ?>><?= $s['nama_satuan']; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('nama_satuan'); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
                                     <div class="col-sm-10">
                                         <input type="date" class="form-control  <?= ($validation->hasError('tanggal_masuk')) ? 'is-invalid' : ''; ?>" id="tanggal_masuk" name="tanggal_masuk" value="<?= old('tanggal_masuk'); ?>">

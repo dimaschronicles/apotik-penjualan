@@ -73,54 +73,20 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item <?= ($title == 'Obat Masuk' || $title == 'Obat Keluar') ? 'menu-is-opening menu-open' : ''; ?>">
-                    <a href="#" class="nav-link <?= ($title == 'Obat Masuk' || $title == 'Obat Keluar') ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-shopping-cart"></i>
-                        <p>
-                            Transaksi
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                <li class="nav-item <?= ($title == 'Obat Masuk') ? 'active' : ''; ?>">
+                    <a href="/obatmasuk" class="nav-link <?= ($title == 'Obat Masuk') ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-sign-in-alt"></i>
+                        <p>Obat Masuk</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/obatmasuk" class="nav-link <?= ($title == 'Obat Masuk') ? 'active' : ''; ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Obat Masuk</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/obatkeluar" class="nav-link <?= ($title == 'Obat Keluar') ? 'active' : ''; ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Obat Keluar</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-                <!-- <li class="nav-item <?= ($title == 'Laporan Data Obat' || $title == 'Laporan Obat Masuk' || $title == 'Laporan Obat Keluar') ? 'menu-is-opening menu-open' : ''; ?>">
-                    <a href="#" class="nav-link <?= ($title == 'Laporan Data Obat' || $title == 'Laporan Obat Masuk' || $title == 'Laporan Obat Keluar') ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>
-                            Laporan
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                <li class="nav-item <?= ($title == 'Obat Keluar') ? 'active' : ''; ?>">
+                    <a href="/obatkeluar" class="nav-link <?= ($title == 'Obat Keluar') ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>Obat Keluar</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/laporanobatmasuk" class="nav-link <?= ($title == 'Laporan Obat Masuk') ? 'active' : ''; ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Obat Masuk</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/laporanobatkeluar" class="nav-link <?= ($title == 'Laporan Obat Keluar') ? 'active' : ''; ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Obat Keluar</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> -->
-                <li class="nav-item <?= ($title == 'Laporan') ? 'active' : ''; ?>">
-                    <a href="/laporan" class="nav-link <?= ($title == 'Laporan') ? 'active' : ''; ?>">
+                </li>
+                <li class="nav-item <?= ($title == 'Laporan Stok Obat') ? 'active' : ''; ?>">
+                    <a href="/laporan" class="nav-link <?= ($title == 'Laporan Stok Obat') ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Laporan

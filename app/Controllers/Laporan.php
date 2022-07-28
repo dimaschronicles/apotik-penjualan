@@ -7,6 +7,7 @@ use App\Models\ObatMasukModel;
 use App\Models\ObatKeluarModel;
 use App\Controllers\BaseController;
 use App\Models\ObatTransaksiModel;
+use App\Models\TransaksiModel;
 
 class Laporan extends BaseController
 {
@@ -16,6 +17,7 @@ class Laporan extends BaseController
         $this->obatMasuk = new ObatMasukModel();
         $this->obatKeluar = new ObatKeluarModel();
         $this->obatTransaksi = new ObatTransaksiModel();
+        $this->transaksi = new TransaksiModel();
     }
 
     public function index()
@@ -31,7 +33,7 @@ class Laporan extends BaseController
         }
 
         $data = [
-            'title' => 'Laporan Stok Obat',
+            'title' => 'Laporan Obat',
             'idObat' => $this->obat->findAll(),
             'obat' => $obat,
         ];
@@ -138,5 +140,45 @@ class Laporan extends BaseController
         ];
 
         return view('laporan/obat_keluar/pdf', $data);
+    }
+
+    public function sell()
+    {
+        $data = [
+            'title' => 'Laporan Transaksi',
+            'obat' => $this->transaksi->findTransaksiSell(),
+        ];
+
+        return view('laporan/transaksi/data_obat_terjual', $data);
+    }
+
+    public function sellPdf()
+    {
+        $data = [
+            'title' => 'Laporan Transaksi',
+            'obat' => $this->transaksi->findTransaksiSell(),
+        ];
+
+        return view('laporan/transaksi/pdf', $data);
+    }
+
+    public function stok()
+    {
+        $data = [
+            'title' => 'Laporan Stok Obat',
+            'obat' => $this->obat->findAllObat(),
+        ];
+
+        return view('laporan/stok/data_obat_stok', $data);
+    }
+
+    public function stokPdf()
+    {
+        $data = [
+            'title' => 'Laporan Stok Obat',
+            'obat' => $this->obat->findAllObat(),
+        ];
+
+        return view('laporan/stok/pdf', $data);
     }
 }

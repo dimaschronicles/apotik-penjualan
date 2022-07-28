@@ -100,6 +100,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="harga" class="col-sm-2 col-form-label">Harga (Rp)</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control  <?= ($validation->hasError('harga')) ? 'is-invalid' : ''; ?>" id="harga" name="harga" placeholder="Masukan harga..." value="<?= ($obat['harga']) ? $obat['harga'] : old('harga'); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('harga'); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
                                         <input type="hidden" name="keterangan" value="<?= old('keterangan'); ?>">

@@ -32,12 +32,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index');
-$routes->get('/register', 'Auth::register');
-$routes->post('/auth', 'Auth::save');
-$routes->get('/forgot_password', 'Auth::forgot_password');
-
-$routes->get('/verify/(:any)', 'Auth::verify/$1');
-$routes->get('/resetpassword/(:any)', 'Auth::resetpassword/$1');
+$routes->get('/auth/login', 'Auth::login');
 
 // dashboard
 $routes->get('/dashboard', 'Dashboard::index');
@@ -76,6 +71,18 @@ $routes->get('/obat/(:num)/edit', 'Obat::edit/$1');
 $routes->put('/obat/(:num)', 'Obat::update/$1');
 $routes->get('/obat/(:num)', 'Obat::show/$1');
 
+// user
+$routes->get('/user', 'User::index');
+$routes->get('/user/add', 'User::create');
+$routes->post('/user', 'User::save');
+$routes->delete('/user/(:num)', 'User::delete/$1');
+$routes->get('/user/(:num)/edit', 'User::edit/$1');
+$routes->put('/user/(:num)', 'User::update/$1');
+
+// transaksi
+$routes->get('/transaksi', 'Transaksi::index');
+$routes->get('/transaksi/addcart', 'Transaksi::addcart');
+
 // obat masuk
 $routes->get('/obatmasuk', 'ObatMasuk::index');
 $routes->get('/obatmasuk/add', 'ObatMasuk::create');
@@ -95,6 +102,10 @@ $routes->get('/obatkeluarpdf', 'Laporan::obatKeluarPdf');
 // laporan stok obat
 $routes->get('/laporan', 'Laporan::index');
 $routes->get('/obatpdf', 'Laporan::getObatPdf');
+$routes->get('/laporan/sell', 'Laporan::sell');
+$routes->get('/laporan/sellpdf', 'Laporan::sellPdf');
+$routes->get('/laporan/stok', 'Laporan::stok');
+
 
 $routes->get('/profile', 'Profile::index');
 $routes->get('/editprofile', 'Profile::editProfile');

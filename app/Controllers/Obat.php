@@ -71,6 +71,13 @@ class Obat extends BaseController
                     'required' => 'Supplier harus diisi!',
                 ]
             ],
+            'harga' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Harga harus diisi!',
+                    'numeric' => 'Harga harus angka!',
+                ]
+            ],
             'keterangan' => [
                 'rules' => 'required',
                 'errors' => [
@@ -86,6 +93,7 @@ class Obat extends BaseController
             'jenis' => $this->request->getVar('nama_jenis'),
             'kategori' => $this->request->getVar('nama_kategori'),
             'id_supplier' => $this->request->getVar('id_supplier'),
+            'harga' => $this->request->getVar('harga'),
             'keterangan' => $this->request->getVar('keterangan'),
             'time_created' => time(),
         ]);
@@ -137,6 +145,13 @@ class Obat extends BaseController
                     'required' => 'Supplier harus diisi!',
                 ]
             ],
+            'harga' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Harga harus diisi!',
+                    'numeric' => 'Harga harus angka!',
+                ]
+            ],
             'keterangan' => [
                 'rules' => 'required',
                 'errors' => [
@@ -153,6 +168,7 @@ class Obat extends BaseController
             'jenis' => $this->request->getVar('nama_jenis'),
             'kategori' => $this->request->getVar('nama_kategori'),
             'id_supplier' => $this->request->getVar('id_supplier'),
+            'harga' => $this->request->getVar('harga'),
             'keterangan' => $this->request->getVar('keterangan'),
             'time_created' => time(),
         ]);

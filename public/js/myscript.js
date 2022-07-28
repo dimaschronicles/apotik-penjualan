@@ -14,22 +14,6 @@ function password_show_hide() {
     }
 }
 
-function password_show_hide_conf() {
-    var x = document.getElementById("password_conf");
-    var show_eye = document.getElementById("show_eye_conf");
-    var hide_eye = document.getElementById("hide_eye_conf");
-    hide_eye.classList.remove("d-none");
-    if (x.type === "password") {
-        x.type = "text";
-        show_eye.style.display = "none";
-        hide_eye.style.display = "block";
-    } else {
-        x.type = "password";
-        show_eye.style.display = "block";
-        hide_eye.style.display = "none";
-    }
-}
-
 $(document).ready(function () {
     // data tables
     $('#example').DataTable()
@@ -52,3 +36,15 @@ $(document).ready(function () {
         theme: "bootstrap4",
     });
 });
+
+function showPass() {
+    let x = document.getElementById("password");
+    let y = document.getElementById("password_conf");
+    if (x.type === "password" && y.type === "password") {
+        x.type = "text";
+        y.type = "text";
+    } else {
+        x.type = "password";
+        y.type = "password";
+    }
+}

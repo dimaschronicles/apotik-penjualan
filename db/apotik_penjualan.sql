@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2022 at 07:37 AM
+-- Generation Time: Jul 28, 2022 at 04:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -37,8 +37,11 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`) VALUES
-(1, 'Tolak Angin'),
-(2, 'Antangin');
+(4, 'Paramex'),
+(5, 'Ultra Flu'),
+(7, 'Bodrex'),
+(8, 'Mylanta'),
+(9, 'Antangin');
 
 -- --------------------------------------------------------
 
@@ -61,8 +64,7 @@ INSERT INTO `jenis` (`id_jenis`, `nama_jenis`) VALUES
 (3, 'Kapsul'),
 (4, 'Obat Oles'),
 (5, 'Obat Tetes'),
-(6, 'Inhaler'),
-(7, 'Obat Suntik');
+(6, 'Inhaler');
 
 -- --------------------------------------------------------
 
@@ -83,9 +85,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (1, 'Obat Bebas'),
 (2, 'Obat Bebas Terbatas'),
 (3, 'Obat Keras'),
-(4, 'Obat Golongan Narkotika'),
 (5, 'Obat Herbal'),
-(6, 'Obat Psikotropika'),
 (7, 'Obat Wajib Apotek');
 
 -- --------------------------------------------------------
@@ -96,11 +96,11 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 
 CREATE TABLE `obat` (
   `id_obat` int(11) NOT NULL,
-  `no_batch_` varchar(20) DEFAULT NULL,
   `nama_obat` varchar(128) NOT NULL,
   `jenis` varchar(128) NOT NULL,
   `kategori` varchar(128) NOT NULL,
   `stok` int(11) DEFAULT NULL,
+  `harga` int(11) NOT NULL,
   `id_supplier` int(11) NOT NULL,
   `keterangan` text NOT NULL,
   `time_created` int(11) NOT NULL
@@ -110,41 +110,12 @@ CREATE TABLE `obat` (
 -- Dumping data for table `obat`
 --
 
-INSERT INTO `obat` (`id_obat`, `no_batch_`, `nama_obat`, `jenis`, `kategori`, `stok`, `id_supplier`, `keterangan`, `time_created`) VALUES
-(2, NULL, 'Tolak Angin', 'Obat Cair', 'Obat Bebas', 180, 1, '<p>-</p>', 1657171240);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `obat_keluar`
---
-
-CREATE TABLE `obat_keluar` (
-  `id_obat_keluar` int(11) NOT NULL,
-  `id_obat` int(11) NOT NULL,
-  `stok_awal` int(11) NOT NULL,
-  `jumlah_keluar` int(11) NOT NULL,
-  `sisa` int(11) NOT NULL,
-  `keterangan_keluar` text NOT NULL,
-  `tanggal_keluar` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `obat_masuk`
---
-
-CREATE TABLE `obat_masuk` (
-  `id_obat_masuk` int(11) NOT NULL,
-  `id_obat` int(11) NOT NULL,
-  `id_supplier` int(11) NOT NULL,
-  `stok_awal` int(11) NOT NULL,
-  `jumlah_masuk` int(11) NOT NULL,
-  `sisa` int(11) NOT NULL,
-  `keterangan_masuk` text NOT NULL,
-  `tanggal_masuk` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `obat` (`id_obat`, `nama_obat`, `jenis`, `kategori`, `stok`, `harga`, `id_supplier`, `keterangan`, `time_created`) VALUES
+(5, 'Ultra Flu', 'Tablet', 'Obat Bebas', 65, 3500, 2, '<p>Obat flu dan demam</p>', 1657556251),
+(6, 'Bodrex', 'Tablet', 'Obat Bebas', 40, 3000, 3, '<p>Obat Sakit Kepala</p>', 1657556691),
+(7, 'Paramex', 'Tablet', 'Obat Bebas', NULL, 2000, 1, '<p>-</p>', 1657590545),
+(8, 'Mylanta', 'Tablet', 'Obat Bebas', NULL, 15000, 1, '<p>-</p>', 1657694171),
+(9, 'Antangin', 'Obat Cair', 'Obat Bebas', NULL, 3000, 2, '<p>-</p>', 1658992839);
 
 -- --------------------------------------------------------
 
@@ -153,14 +124,12 @@ CREATE TABLE `obat_masuk` (
 --
 
 CREATE TABLE `obat_transaksi` (
-  `id_transaksi` int(11) NOT NULL,
+  `id_obat_transaksi` int(11) NOT NULL,
   `id_obat` int(11) NOT NULL,
   `no_batch` varchar(20) DEFAULT NULL,
-  `nama_satuan` varchar(20) NOT NULL,
   `jumlah_masuk` int(11) DEFAULT NULL,
-  `jumlah_keluar` int(11) DEFAULT NULL,
+  `jumlah_keluar` int(11) NOT NULL,
   `jumlah_sisa` int(11) DEFAULT NULL,
-  `id_supplier` int(11) DEFAULT NULL,
   `keterangan_transaksi` text NOT NULL,
   `status` varchar(20) NOT NULL,
   `tanggal_transaksi` date NOT NULL
@@ -170,9 +139,11 @@ CREATE TABLE `obat_transaksi` (
 -- Dumping data for table `obat_transaksi`
 --
 
-INSERT INTO `obat_transaksi` (`id_transaksi`, `id_obat`, `no_batch`, `nama_satuan`, `jumlah_masuk`, `jumlah_keluar`, `jumlah_sisa`, `id_supplier`, `keterangan_transaksi`, `status`, `tanggal_transaksi`) VALUES
-(2, 2, '131232', '', 100, NULL, 200, NULL, '<p>1 box berisi 50</p>', 'masuk', '2022-07-07'),
-(3, 2, NULL, 'PCS', NULL, 20, 180, NULL, '<p>dibeli</p>', 'keluar', '2022-07-08');
+INSERT INTO `obat_transaksi` (`id_obat_transaksi`, `id_obat`, `no_batch`, `jumlah_masuk`, `jumlah_keluar`, `jumlah_sisa`, `keterangan_transaksi`, `status`, `tanggal_transaksi`) VALUES
+(2, 5, '890080', 100, 0, 200, '<p>-</p>', 'masuk', '2022-07-28'),
+(3, 5, NULL, NULL, 35, 65, '<p>-</p>', 'keluar', '2022-07-29'),
+(4, 6, '575888', 50, 0, 50, '<p>-</p>', 'masuk', '2022-07-28'),
+(5, 6, NULL, NULL, 10, 40, '<p>-</p>', 'keluar', '2022-07-28');
 
 -- --------------------------------------------------------
 
@@ -190,11 +161,9 @@ CREATE TABLE `satuan` (
 --
 
 INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
-(1, 'Buah'),
 (2, 'PCS'),
 (3, 'Box'),
 (4, 'Kaplet'),
-(5, 'Unit'),
 (6, 'Botol');
 
 -- --------------------------------------------------------
@@ -217,7 +186,36 @@ CREATE TABLE `supplier` (
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `telp_supplier`, `alamat_supplier`, `keterangan_supplier`) VALUES
 (1, 'Semarang', '089234567891', 'Jl. Soekarno', 'askdjaklsjdklasjkdaskldj'),
-(2, 'Solo', '17231232323', 'Jl Kemerdekaan', 'Supplier alat kesehatan');
+(2, 'Solo', '17231232323', 'Jl Kemerdekaan', 'Supplier alat kesehatan'),
+(3, 'Purwokerto', '082394033294', 'Jl. Subroto', '-'),
+(4, 'Kudus', '083823582619', 'Jl. Ahmad Dahlan', '-');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `id_transaksi` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_obat` int(11) NOT NULL,
+  `nama_pembeli` varchar(128) NOT NULL,
+  `jumlah_keluar` int(11) NOT NULL,
+  `sub_total` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `tanggal_keluar` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `id_obat`, `nama_pembeli`, `jumlah_keluar`, `sub_total`, `status`, `tanggal_keluar`) VALUES
+(6, 1, 5, 'Joko', 3, 10500, 'sell', '2022-07-28 05:07:50'),
+(7, 1, 8, 'Joko', 5, 75000, 'sell', '2022-07-28 05:40:48'),
+(8, 1, 5, 'Joko', 5, 17500, 'sell', '2022-07-28 09:03:38'),
+(9, 1, 6, 'Anwar', 5, 15000, 'sell', '2022-07-28 09:06:30');
 
 -- --------------------------------------------------------
 
@@ -233,17 +231,16 @@ CREATE TABLE `user` (
   `email` varchar(128) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
   `role` int(11) NOT NULL,
-  `is_active` int(11) NOT NULL
+  `date_created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `email`, `no_hp`, `role`, `is_active`) VALUES
-(1, 'dimaschronicles', '$2y$10$OLZyoSr5VsOXtftwLT732u4c9m2/UYL09Gop0HeDsdb24DjwkZSAW', 'Dimas Cahyo Nur Aditya', 'dimaschronicles@gmail.com', '081903304446', 1, 1),
-(2, 'anggie', '$2y$10$OLZyoSr5VsOXtftwLT732u4c9m2/UYL09Gop0HeDsdb24DjwkZSAW', 'Anggie Febriansyah', 'anggiefebriyanz@gmail.com', '081587672132', 2, 1),
-(3, 'farhan', '$2y$10$OLZyoSr5VsOXtftwLT732u4c9m2/UYL09Gop0HeDsdb24DjwkZSAW', 'Farhan Ramdhani Ashari', 'farhanramdhani@gmail.com', '089334421354', 2, 1);
+INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `email`, `no_hp`, `role`, `date_created`) VALUES
+(1, 'farhann', '$2y$10$OLZyoSr5VsOXtftwLT732u4c9m2/UYL09Gop0HeDsdb24DjwkZSAW', 'Farhan Ramdhani Ashri', 'farhanramdhani@gmail.com', '083844699012', 1, '2020-12-01 12:51:37'),
+(4, 'dimasc', '$2y$10$OLZyoSr5VsOXtftwLT732u4c9m2/UYL09Gop0HeDsdb24DjwkZSAW', 'Dimas Chronicles', 'dimaschronicles@gmail.com', '081903304446', 2, '2022-07-28 01:51:18');
 
 --
 -- Indexes for dumped tables
@@ -274,22 +271,10 @@ ALTER TABLE `obat`
   ADD PRIMARY KEY (`id_obat`);
 
 --
--- Indexes for table `obat_keluar`
---
-ALTER TABLE `obat_keluar`
-  ADD PRIMARY KEY (`id_obat_keluar`);
-
---
--- Indexes for table `obat_masuk`
---
-ALTER TABLE `obat_masuk`
-  ADD PRIMARY KEY (`id_obat_masuk`);
-
---
 -- Indexes for table `obat_transaksi`
 --
 ALTER TABLE `obat_transaksi`
-  ADD PRIMARY KEY (`id_transaksi`);
+  ADD PRIMARY KEY (`id_obat_transaksi`);
 
 --
 -- Indexes for table `satuan`
@@ -302,6 +287,12 @@ ALTER TABLE `satuan`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id_supplier`);
+
+--
+-- Indexes for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indexes for table `user`
@@ -317,7 +308,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `jenis`
@@ -335,25 +326,13 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `obat_keluar`
---
-ALTER TABLE `obat_keluar`
-  MODIFY `id_obat_keluar` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `obat_masuk`
---
-ALTER TABLE `obat_masuk`
-  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `obat_transaksi`
 --
 ALTER TABLE `obat_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_obat_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `satuan`
@@ -365,13 +344,19 @@ ALTER TABLE `satuan`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

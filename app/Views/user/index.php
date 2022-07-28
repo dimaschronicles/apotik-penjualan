@@ -10,7 +10,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Data Obat</li>
+                        <li class="breadcrumb-item active">Data Karyawan</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -34,53 +34,44 @@
                 <div class="col">
 
                     <div class="card">
-                        <?php if (session('role') == 1) : ?>
-                            <div class="card-header">
-                                <a href="/obat/add" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Tambah Data Obat</a>
-                            </div>
-                        <?php endif; ?>
+                        <div class="card-header">
+                            <a href="/user/add" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Tambah Karyawan</a>
+                        </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Obat</th>
-                                        <th>Kategori</th>
-                                        <th>Jenis</th>
-                                        <th>Supplier</th>
-                                        <th>Stok</th>
-                                        <th>Harga</th>
+                                        <th>Username</th>
+                                        <th>Nama Karyawan</th>
+                                        <th>Email</th>
+                                        <th>No HP</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($obat as $o) : ?>
+                                    foreach ($user as $u) : ?>
                                         <tr>
                                             <td><?= $i++; ?></td>
-                                            <td><?= $o['nama_obat']; ?></td>
-                                            <td><?= $o['kategori']; ?></td>
-                                            <td><?= $o['jenis']; ?></td>
-                                            <td><?= $o['nama_supplier']; ?></td>
-                                            <td><?= ($o['stok'] == null) ? 0 : $o['stok']; ?></td>
-                                            <td>Rp <?= number_format($o['harga'], 2, ',', '.') ?></td>
+                                            <td><?= $u['username']; ?></td>
+                                            <td><?= $u['nama']; ?></td>
+                                            <td><?= $u['email']; ?></td>
+                                            <td><?= $u['no_hp']; ?></td>
                                             <td>
-                                                <?php if (session('role') == 1) : ?>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusObat<?= $o['id_obat']; ?>">
-                                                        Hapus
-                                                    </button>
-                                                    <a href="/obat/<?= $o['id_obat']; ?>/edit" class="btn btn-warning">Edit</a>
-                                                <?php endif; ?>
-                                                <a href="/obat/<?= $o['id_obat']; ?>" class="btn btn-info">Detail</a>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusUser<?= $u['id_user']; ?>">
+                                                    Hapus
+                                                </button>
+                                                <a href="/user/<?= $u['id_user']; ?>/edit" class="btn btn-warning">Edit</a>
                                             </td>
                                         </tr>
 
-                                        <div class="modal fade" id="hapusObat<?= $o['id_obat']; ?>" tabindex="-1" aria-labelledby="hapusObatLabel" aria-hidden="true">
+                                        <div class="modal fade" id="hapusUser<?= $u['id_user']; ?>" tabindex="-1" aria-labelledby="hapusUserLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="hapusObatLabel">Peringatan!</h5>
+                                                        <h5 class="modal-title" id="hapusUserLabel">Peringatan!</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -89,7 +80,7 @@
                                                         Apakah data ini akan dihapus?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form action="/obat/<?= $o['id_obat']; ?>" method="post" class="d-inline">
+                                                        <form action="/user/<?= $u['id_user']; ?>" method="post" class="d-inline">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Ya</button>
@@ -104,12 +95,10 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Obat</th>
-                                        <th>Kategori</th>
-                                        <th>Jenis</th>
-                                        <th>Supplier</th>
-                                        <th>Stok</th>
-                                        <th>Harga</th>
+                                        <th>Username</th>
+                                        <th>Nama Karyawan</th>
+                                        <th>Email</th>
+                                        <th>No HP</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

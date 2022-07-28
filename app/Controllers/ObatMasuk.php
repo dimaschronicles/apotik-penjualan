@@ -14,15 +14,14 @@ class ObatMasuk extends BaseController
     {
         $this->supplier = new SupplierModel();
         $this->obat = new ObatModel();
-        $this->obatMasuk = new ObatMasukModel();
-        $this->obatTransaksi = new ObatTransaksiModel();
+        $this->obatMasuk = new ObatTransaksiModel();
     }
 
     public function index()
     {
         $data = [
             'title' => 'Obat Masuk',
-            'obatMasuk' => $this->obatTransaksi->getObatMasuk(),
+            'obatMasuk' => $this->obatMasuk->getObatMasuk(),
         ];
 
         return view('obat_masuk/index', $data);
@@ -84,7 +83,7 @@ class ObatMasuk extends BaseController
         $getStok = $this->obat->find($idObat);
         $jumlahStok = intval($jumlahObat) + intval($getStok['stok']);
 
-        $this->obatTransaksi->save([
+        $this->obatMasuk->save([
             'id_obat' => $idObat,
             'no_batch' => $this->request->getVar('no_batch'),
             'jumlah_masuk' => $jumlahObat,

@@ -62,11 +62,15 @@
                                     <span><?= $obat['nama_supplier']; ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b>Harga :</b>
+                                    <span>Rp <?= number_format($obat['harga'], 2, ',', '.'); ?></span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <b>Keterangan :</b>
                                     <span><?= $obat['keterangan']; ?></span>
                                 </li>
                             </ul>
-                            <a href="#" class="btn btn-secondary mt-3" onclick="window.close()">Kembali</a>
+                            <a href="/obat" class="btn btn-secondary mt-3">Kembali</a>
                         </div>
                         <!-- /.card-body -->
                     </div>

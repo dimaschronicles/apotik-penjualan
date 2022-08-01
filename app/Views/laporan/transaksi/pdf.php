@@ -26,7 +26,6 @@
             <table style="width: 100%; text-align: center;">
                 <tr>
                     <th style="width: 5%;">No</th>
-                    <th>Nama Pembeli</th>
                     <th>Nama Obat</th>
                     <th>Harga</th>
                     <th>Jumlah</th>
@@ -36,7 +35,6 @@
                 foreach ($obat as $o) : ?>
                     <tr>
                         <td><?= $i++; ?></td>
-                        <td><?= $o['nama_pembeli']; ?></td>
                         <td><?= $o['nama_obat']; ?></td>
                         <td>Rp <?= number_format($o['harga'], 2, ',', '.') ?></td>
                         <td><?= $o['jumlah_keluar']; ?></td>

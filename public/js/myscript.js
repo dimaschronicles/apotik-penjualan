@@ -48,3 +48,13 @@ function showPass() {
         y.type = "password";
     }
 }
+
+function count() {
+    let jumlah_uang = document.getElementById('uang_pembeli').value
+    let total_harga = document.getElementById('total_harga').value
+
+    let hasil = parseInt(jumlah_uang) - parseInt(total_harga)
+    if (!isNaN(hasil)) {
+        document.getElementById('uang_kembali').value = hasil
+    }
+}

@@ -11,9 +11,10 @@ class TransaksiModel extends Model
     protected $allowedFields = [
         'id_user',
         'id_obat',
-        'nama_pembeli',
+        'uang_pembeli',
         'jumlah_keluar',
         'sub_total',
+        'uang_kembali',
         'status',
         'tanggal_keluar',
     ];

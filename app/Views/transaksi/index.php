@@ -37,7 +37,7 @@
                                     <select class="form-control <?= ($validation->hasError('nama_obat')) ? 'is-invalid' : ''; ?>" id="nama_obat" name="nama_obat">
                                         <option value="">=== Pilih Obat ===</option>
                                         <?php foreach ($obat as $o) : ?>
-                                            <option value="<?= $o['id_obat']; ?>"><?= $o['nama_obat']; ?> - <?= number_format($o['harga'], 2, ',', '.') ?></option>
+                                            <option value="<?= $o['id_obat']; ?>" <?= (old('nama_obat') == $o['id_obat']) ? 'selected' : ''; ?>><?= $o['nama_obat']; ?> - <?= number_format($o['harga'], 2, ',', '.') ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
@@ -48,25 +48,36 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="jumlah_beli">Jumlah</label>
-                                    <input type="number" class="form-control <?= ($validation->hasError('jumlah_beli')) ? 'is-invalid' : ''; ?>" id="jumlah_beli" name="jumlah_beli" placeholder="Masukan jumlah...">
+                                    <input type="number" class="form-control <?= ($validation->hasError('jumlah_beli')) ? 'is-invalid' : ''; ?>" id="jumlah_beli" name="jumlah_beli" placeholder="Masukan jumlah..." value="<?= old('jumlah_beli'); ?>">
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('nama_pembeli'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="nama_pembeli">Nama Pembeli</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('nama_pembeli')) ? 'is-invalid' : ''; ?>" id="nama_pembeli" name="nama_pembeli" placeholder="Masukan nama pembeli...">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('nama_pembeli'); ?>
+                                        <?= $validation->getError('jumlah_beli'); ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan Keranjang</button>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="uang_pembeli">Jumlah Uang Pembeli</label>
+                                    <input type="text" class="form-control <?= ($validation->hasError('uang_pembeli')) ? 'is-invalid' : ''; ?>" id="uang_pembeli" name="uang_pembeli" onkeyup="count()" placeholder="Masukan uang pembeli...">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('uang_pembeli'); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="uang_kembali">Uang Kembali</label>
+                                    <input type="text" class="form-control <?= ($validation->hasError('uang_kembali')) ? 'is-invalid' : ''; ?>" id="uang_kembali" name="uang_kembali" readonly>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('uang_kembali'); ?>
+                                    </div>
+                                    <input type="hidden" name="total_harga" id="total_harga" onkeyup="count()" value="<?= $total['sub_total'] ?>">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -78,7 +89,6 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Nama Pembeli</th>
                                         <th scope="col">Nama Obat</th>
                                         <th scope="col">Jumlah</th>
                                         <th scope="col">Harga</th>
@@ -92,7 +102,6 @@
                                     foreach ($cart as $c) : ?>
                                         <tr>
                                             <th scope="row"><?= $i++; ?></th>
-                                            <td><?= $c['nama_pembeli']; ?></td>
                                             <td><?= $c['nama_obat']; ?></td>
                                             <td><?= $c['jumlah_keluar']; ?></td>
                                             <td>Rp <?= number_format($c['harga'], 2, ',', '.') ?></td>
@@ -115,7 +124,7 @@
                                 <form action="/transaksi/savecart" method="POST">
                                     <?= csrf_field(); ?>
                                     <?php foreach ($cart as $c) : ?>
-                                        <input type="hidden" name="nama_pembeli" value="<?= $c['nama_pembeli']; ?>">
+                                        <input type="hidden" name="id_user" value="<?= session('id_user') ?>">
                                     <?php endforeach; ?>
                                     <button type="submit" class="btn btn-success">Simpan Penjualan</button>
                                 </form>

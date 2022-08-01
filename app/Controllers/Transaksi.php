@@ -36,12 +36,12 @@ class Transaksi extends BaseController
                     'required' => 'Nama Obat harus diisi!',
                 ]
             ],
-            'nama_pembeli' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Pembeli harus diisi!',
-                ]
-            ],
+            // 'uang_pembeli' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Jumlah Uang Pembeli harus diisi!',
+            //     ]
+            // ],
             'jumlah_beli' => [
                 'rules' => 'required|numeric',
                 'errors' => [
@@ -81,13 +81,13 @@ class Transaksi extends BaseController
 
     public function saveCart()
     {
-        $nama_pembeli = $this->request->getVar('nama_pembeli');
+        $id_user = $this->request->getVar('id_user');
 
         $data = [
             'status' => 'sell',
         ];
 
-        $this->db->table('transaksi')->where('nama_pembeli', $nama_pembeli)->update($data);
+        $this->db->table('transaksi')->where('id_user', $id_user)->update($data);
         session()->setFlashdata('message', '<div class="alert alert-success"><strong>Obat</strong> berhasil dijual!</div>');
         return redirect()->to('/transaksi');
     }

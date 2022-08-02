@@ -144,9 +144,19 @@ class Laporan extends BaseController
 
     public function sell()
     {
+        $dari_tgl = $this->request->getGet('dari_tanggal');
+        $sampai_tgl = $this->request->getGet('sampai_tanggal');
+
+        if (empty($dari_tgl) || empty($sampai_tgl)) {
+            $obat = '';
+        } else {
+            $obat = $this->transaksi->filterTransaksi($dari_tgl, $sampai_tgl);
+        }
+
         $data = [
             'title' => 'Laporan Transaksi',
-            'obat' => $this->transaksi->findTransaksiSell(),
+            'obat' => $obat,
+            'obatAll' => $this->transaksi->findTransaksiSell(),
         ];
 
         return view('laporan/transaksi/data_obat_terjual', $data);
@@ -160,6 +170,19 @@ class Laporan extends BaseController
         ];
 
         return view('laporan/transaksi/pdf', $data);
+    }
+
+    public function sellPdfDate()
+    {
+        $dari_tgl = $this->request->getGet('dari_tanggal');
+        $sampai_tgl = $this->request->getGet('sampai_tanggal');
+
+        $data = [
+            'title' => 'Laporan Transaksi',
+            'obat' => $this->transaksi->filterTransaksi($dari_tgl, $sampai_tgl),
+        ];
+
+        return view('laporan/transaksi/pdf_date', $data);
     }
 
     public function stok()

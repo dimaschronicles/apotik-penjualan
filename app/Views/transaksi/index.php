@@ -30,6 +30,17 @@
                 <?= csrf_field(); ?>
                 <div class="card">
                     <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tanggal">Tanggal</label>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><?= date('d-m-Y'); ?></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

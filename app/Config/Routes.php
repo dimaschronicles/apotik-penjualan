@@ -104,8 +104,8 @@ $routes->get('/laporan', 'Laporan::index');
 $routes->get('/obatpdf', 'Laporan::getObatPdf');
 $routes->get('/laporan/sell', 'Laporan::sell');
 $routes->get('/laporan/sellpdf', 'Laporan::sellPdf');
+$routes->get('/laporan/sellpdfdate', 'Laporan::sellPdfDate');
 $routes->get('/laporan/stok', 'Laporan::stok');
-
 
 $routes->get('/profile', 'Profile::index');
 $routes->get('/editprofile', 'Profile::editProfile');

@@ -24,7 +24,9 @@
         </div>
         <div class="tanggal">
             <p style="font-size: 12px;">
-                Nama Karyawan : <?= session('nama'); ?>
+                Nama Karyawan : <?= session('nama'); ?><br>
+                Mulai Tanggal : <?= @$_GET['dari_tanggal']; ?><br>
+                Sampai Tanggal : <?= @$_GET['sampai_tanggal']; ?>
             </p>
         </div>
         <div class="data-obat">
@@ -35,7 +37,6 @@
                     <th>Harga</th>
                     <th>Jumlah</th>
                     <th>Sub Total</th>
-                    <th>Tanggal</th>
                 </tr>
                 <?php $i = 1;
                 foreach ($obat as $o) : ?>
@@ -45,7 +46,6 @@
                         <td>Rp <?= number_format($o['harga'], 2, ',', '.') ?></td>
                         <td><?= $o['jumlah_keluar']; ?></td>
                         <td>Rp <?= number_format($o['sub_total'], 2, ',', '.') ?></td>
-                        <td><?= $o['tanggal_keluar']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

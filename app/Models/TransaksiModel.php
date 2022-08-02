@@ -51,4 +51,12 @@ class TransaksiModel extends Model
             ->where(['id_user' =>  session('id_user'), 'status' => 'cart'])
             ->selectSum('sub_total')->get()->getRowArray();
     }
+
+    public function filterTransaksi($tanggal_dari, $tanggal_sampai)
+    {
+        return $this->db->table('transaksi')->select('*')
+            ->where(['tanggal_keluar >=' => $tanggal_dari, 'tanggal_keluar <=' => $tanggal_sampai])
+            ->join('obat', 'obat.id_obat = transaksi.id_obat')
+            ->get()->getResultArray();
+    }
 }

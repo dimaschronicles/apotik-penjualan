@@ -65,7 +65,7 @@ class Transaksi extends BaseController
             'jumlah_keluar' => $jumlah,
             'sub_total' => $sub_total,
             'status' => 'cart',
-            'tanggal_keluar' => date('Y-m-d h:i:s'),
+            'tanggal_keluar' => date('Y-m-d'),
         ]);
 
         session()->setFlashdata('message', '<div class="alert alert-success">Data <strong>obat</strong> berhasil ditambahkan!</div>');
